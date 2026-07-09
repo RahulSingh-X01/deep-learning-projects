@@ -217,4 +217,4 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-ann-tumor-classifier/artifacts/
+ann-tumor-classifier/artifacts/.vscode/
