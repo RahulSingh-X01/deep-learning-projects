@@ -3,12 +3,6 @@ import torch.nn as nn
 from torch import optim
 from torch.utils.data import DataLoader
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-USE_CUDA = device.type == "cuda"
-
-if USE_CUDA:
-    torch.backends.cudnn.benchmark = True
-
 DEFAULT_CONFIG = {
     "learning_rate": 0.0001,
     "epochs": 10,
@@ -27,15 +21,17 @@ def define_hyperparameter(model, config=DEFAULT_CONFIG):
     
     return criterion, optimizer, config
 
-def data_loaders(train_dataset, test_dataset, config=DEFAULT_CONFIG):
+def data_loaders(train_dataset, test_dataset, device, config=DEFAULT_CONFIG):
+    use_cuda = device.type == 'cuda'
     
-    train_loader = DataLoader(train_dataset, batch_size=config['batch_size'], shuffle=True, pin_memory=USE_CUDA, num_workers=4, persistent_workers=True)
-    test_loader = DataLoader(test_dataset, batch_size=config['batch_size'], shuffle=False, pin_memory=USE_CUDA, num_workers=4, persistent_workers=True)
+    train_loader = DataLoader(train_dataset, batch_size=config['batch_size'], shuffle=True, pin_memory=use_cuda, num_workers=4, persistent_workers=True)
+    test_loader = DataLoader(test_dataset, batch_size=config['batch_size'], shuffle=False, pin_memory=use_cuda, num_workers=4, persistent_workers=True)
     
     return train_loader, test_loader
     
 
-def train(model, criterion, optimizer, config, train_loader):
+def train(model, criterion, optimizer, config, train_loader, device):
+    
     model = model.to(device)
     
     for epoch in range(config['epochs']):

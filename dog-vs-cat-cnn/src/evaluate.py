@@ -1,8 +1,6 @@
 import torch
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-def evaluate(model, test_loader):
+def evaluate(model, test_loader, device):
     model = model.to(device)
     model.eval()
     

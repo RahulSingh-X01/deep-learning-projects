@@ -1,9 +1,8 @@
 import torch
 from PIL import Image
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-def predict(model, image, transform, classes): 
+def predict(model, image, transform, classes, device): 
     
     model = model.to(device)
     
@@ -22,6 +21,3 @@ def predict(model, image, transform, classes):
         predicted = torch.argmax(output, dim=1).item()
         
     return classes[predicted]
-        
-    
-    
