@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torchvision.models import efficientnet_b0, EfficientNet_B0_Weights
 
-def load_model():
+def load_pretrained_model():
     """Load a pretrained EfficientNet-B0 model."""
     weights = EfficientNet_B0_Weights.DEFAULT
     model = efficientnet_b0(weights=weights)
