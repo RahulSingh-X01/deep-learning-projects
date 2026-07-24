@@ -30,7 +30,7 @@ def data_loaders(train_dataset, test_dataset, device, config=DEFAULT_CONFIG):
     return train_loader, test_loader
     
 
-def train(model, criterion, optimizer, config, train_loader, device):
+def train(model, criterion, optimizer, train_loader, device, config=DEFAULT_CONFIG):
     
     model = model.to(device)
     
