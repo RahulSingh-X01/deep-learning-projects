@@ -219,3 +219,4 @@ __marimo__/
 
 ann-tumor-classifier/artifacts/
 .vscode/
+dog-vs-cat-cnn/data/
