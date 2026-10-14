@@ -2,11 +2,11 @@ import torch
 import torch.nn as nn
 
 class FashionMnistModel(nn.Module):
-    def __init__(self, config, device):
+    def __init__(self, config):
         super().__init__()
         
         self.features = nn.Sequential(
-            nn.Conv2d(config.in_channel, 32, kernel_size=3, padding='same'),
+            nn.Conv2d(config.in_channels, 32, kernel_size=3, padding='same'),
             nn.ReLU(),
             nn.BatchNorm2d(32),
             nn.MaxPool2d(kernel_size=2, stride=2),

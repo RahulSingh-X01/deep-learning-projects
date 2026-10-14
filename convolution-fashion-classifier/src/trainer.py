@@ -16,7 +16,7 @@ class Trainer:
         self.optimizer = optim.Adam(
             self.model.parameters(),
             lr = self.config.learning_rate,
-            weight_decay = self.config.weight_deacy
+            weight_decay = self.config.weight_decay
         )
         
         self.loss_history = []
