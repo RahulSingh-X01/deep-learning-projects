@@ -43,7 +43,7 @@ class Inference:
                 confidence, predicted = torch.max(probs, 1)
                 
             class_idx = predicted.item()
-            class_name = self.config.class_names[class_idx] 
+            class_name = self.config.class_names[class_idx] #type: ignore
             confidence  = confidence.item() * 100
             
             return {
